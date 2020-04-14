@@ -33,10 +33,10 @@ if GetCurrentResourceName() == 'Lenzh_chopshop' then
         if not xPlayer then return; end
         for k,v in pairs(Config.Items) do
             local randomCount = math.random(0, 3)
-            if xPlayer.getInventoryItem(v).count >= xPlayer.getInventoryItem(v).limit then
-                TriggerClientEvent('esx:showNotification', source, '~r~You cant carry anymore!')
-            else
+            if xPlayer.canCarryItem(v, randomCount) then
                 xPlayer.addInventoryItem(v, randomCount)
+            else
+                TriggerClientEvent('esx:showNotification', source, '~r~You cant carry so much stuff!')
             end
         end
 
